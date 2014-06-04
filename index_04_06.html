@@ -59,12 +59,7 @@
           map.removeLayer(geoJsonLayer2)
         }
 		
-		$.get("http://rpbackgis2.saskatoon.ca/ArcGIS/rest/services/MapService/COS_AdministrativeAreas/MapServer/1/query?where=objectid+%3D+objectid&outfields=*&f=json&outSR=4326", bBoxEmpty, "JSONP").success(function() {
 		$.get("http://rpbackgis2.saskatoon.ca/ArcGIS/rest/services/MapService/COS_AdministrativeAreas/MapServer/1/query?where=objectid+%3D+objectid&outfields=*&f=json&outSR=4326", bBoxTest1, "JSONP");
-		}).error(function() {
-			$.get('map_data/map_1.geojson', bBoxTest1, "JSON");
-		}).complete(function() { });
-		
 		function bBoxTest1(data){
 			esriObject = data;
 			if (!esriObject){
@@ -83,12 +78,7 @@
 			}
 		};
 		
-		$.get("http://rpbackgis2.saskatoon.ca/ArcGIS/rest/services/MapService/COS_AdministrativeAreas/MapServer/0/query?where=objectid+%3D+objectid&outfields=*&f=json&outSR=4326", bBoxEmpty, "JSONP").success(function() {
 		$.get("http://rpbackgis2.saskatoon.ca/ArcGIS/rest/services/MapService/COS_AdministrativeAreas/MapServer/0/query?where=objectid+%3D+objectid&outfields=*&f=json&outSR=4326", bBoxTest0, "JSONP");
-		}).error(function() {
-			$.get('map_data/map_0.geojson', bBoxTest0, "JSON");
-		}).complete(function() { });
-		
 		function bBoxTest0(data){
 			esriObject = data;
 			if (!esriObject){
@@ -107,9 +97,6 @@
 			}
 		};
 		map.setView([52.17,-106.68], 9);
-		
-		function bBoxEmpty(){
-		};
     }
 	
 	map.on('zoomend', function(e) {
