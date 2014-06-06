@@ -6,11 +6,9 @@
 	<link rel="stylesheet" href="css/map.css">
     <!--[if lte IE 8]><link rel="stylesheet" href="/the/path/to/leaflet.ie.css"><![endif]-->
     <style>
-	html, body, #map {
-        height:100%;
-		width:100%;
-		padding:0px;
-		margin:0px;
+	#map {
+        width : 500px;
+        height : 500px;
      }
 	.info {
 			padding: 6px 8px;
@@ -33,7 +31,7 @@
     <div id="map"></div>
     <script>
 	var ptSymbol, lineSymbol, polySymbol, jsonconverter, geoJsonLayer, geoJsonLayer2;
-	var map = L.map('map').setView([52.14,-106.65], 12);
+	var map = L.map('map').setView([52.17,-106.68], 9);
 	
 	jsonconverter = esriConverter();
 	
@@ -108,18 +106,18 @@
 			geoJsonLayer.addTo(map);
 			}
 		};
-		map.setView([52.14,-106.65], 12);
+		map.setView([52.17,-106.68], 9);
 		
 		function bBoxEmpty(){
 		};
     }
 	
 	map.on('zoomend', function(e) {
-    if (map.getZoom() > 13) {
+    if (map.getZoom() > 10) {
 		map.removeLayer(geoJsonLayer);
 		map.addLayer(geoJsonLayer2);
 		}
-	else if (map.getZoom() <= 13)  {
+	else if (map.getZoom() <= 10)  {
 	    map.removeLayer(geoJsonLayer2);
 		map.addLayer(geoJsonLayer);
 		}
@@ -187,16 +185,16 @@ info.addTo(map);
 		function onEachFeature(feature, layer) {
 			layer.on({
 				mouseover: highlightFeature,
-				mouseout: resetHighlight
-				//click: zoomToFeature
+				mouseout: resetHighlight,
+				click: zoomToFeature
 			});
 		}
 		
 		function onEachFeature1(feature, layer) {
 			layer.on({
 				mouseover: highlightFeature1,
-				mouseout: resetHighlight
-				//click: zoomToFeature
+				mouseout: resetHighlight,
+				click: zoomToFeature
 			});
 		}
     </script>
